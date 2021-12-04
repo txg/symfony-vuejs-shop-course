@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
+use App\Form\EditProductFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,6 +16,37 @@ class DefaultController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('main/default/index.html.twig');
+        $entityManager = $this->getDoctrine()->getManager();
+        $productList = $entityManager->getRepository(Product::class)->findAll();
+        return $this->render('main/default/index.html.twig', []);
+    }
+
+    /**
+     * @Route("edit-product/{id}", methods="GET|POST", name="edit_product", requirements={"id"="\d+"})
+     * @Route("add-product", methods="GET|POST", name="add_product")
+     */
+    public function editProduct(Request $request, int $id = null): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if ($id) {
+            $product = $entityManager->getRepository(Product::class)->find($id);
+        } else {
+            $product = new Product();
+        }
+
+        $form = $this->createForm(EditProductFormType::class, $product);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('edit_product', ['id' => $product->getId()]);
+        }
+        
+        return $this->render('main/default/edit_product.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
