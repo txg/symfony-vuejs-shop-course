@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="main_homepage")
      */
     public function index(): Response
     {
@@ -44,7 +44,7 @@ class DefaultController extends AbstractController
 
             return $this->redirectToRoute('edit_product', ['id' => $product->getId()]);
         }
-        
+
         return $this->render('main/default/edit_product.html.twig', [
             'form' => $form->createView()
         ]);

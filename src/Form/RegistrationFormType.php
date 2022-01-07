@@ -5,9 +5,11 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -17,12 +19,37 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class, [
+                'label' => 'Your Email',
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                    'autofocus' => 'autofocus',
+                    'placeholder' => 'E-mail'
+                ],
+                'constraints' => [
+                    new notBlank([
+                        'message' => 'please fill Email field'
+                    ]),
+                    new Email([
+                        'message' => 'please enter valid Email'
+                    ])
+                ]
+            ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'I agree to the <a href="#">privacy policy</a> *',
                 'mapped' => false,
+                'required' => true,
+                'label_html' => true,
+                'attr' => [
+                    'class' => 'custom-control-input'
+                ],
+                'label_attr' => [
+                    'class' => 'custom-control-label'
+                ],
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Please check the box',
                     ]),
                 ],
             ])
@@ -30,7 +57,12 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'required' => false,
+                'label' => 'Enter your password',
+                'attr' => [
+                    'class' => 'form-control',
+                    'autocomplete' => 'new-password'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -42,8 +74,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

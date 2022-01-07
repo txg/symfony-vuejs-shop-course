@@ -1,0 +1,72 @@
+4c4
+<     "minimum-stability": "stable",
+---
+>     "minimum-stability": "dev",
+10c10,12
+<         "composer/package-versions-deprecated": "1.11.99.4",
+---
+>         "ext-json": "*",
+>         "api-platform/core": "^2.6",
+>         "composer/package-versions-deprecated": "1.11.99.2",
+12,15c14,25
+<         "doctrine/doctrine-bundle": "^2.5",
+<         "doctrine/doctrine-migrations-bundle": "^3.2",
+<         "doctrine/orm": "^2.10",
+<         "phpdocumentor/reflection-docblock": "^5.3",
+---
+>         "doctrine/doctrine-bundle": "^2.3",
+>         "doctrine/doctrine-migrations-bundle": "^3.1",
+>         "doctrine/orm": "^2.9",
+>         "imagine/imagine": "1.2",
+>         "knplabs/knp-paginator-bundle": "^5.6",
+>         "knpuniversity/oauth2-client-bundle": "2.7",
+>         "league/oauth2-facebook": "^2.0",
+>         "league/oauth2-google": "^4.0",
+>         "lexik/form-filter-bundle": "^6.1",
+>         "nelmio/cors-bundle": "^2.1",
+>         "php-translation/symfony-bundle": "^0.12.1",
+>         "phpdocumentor/reflection-docblock": "^5.2",
+16a27
+>         "stof/doctrine-extensions-bundle": "^1.6",
+26a38
+>         "symfony/messenger": "5.2.*",
+38c50,51
+<         "symfony/twig-bundle": "5.2.*",
+---
+>         "symfony/twig-bundle": "^5.2",
+>         "symfony/uid": "5.2.*",
+40a54
+>         "symfony/webpack-encore-bundle": "^1.11",
+42c56,58
+<         "symfonycasts/verify-email-bundle": "^1.6",
+---
+>         "symfonycasts/reset-password-bundle": "1.8",
+>         "symfonycasts/verify-email-bundle": "^1.5",
+>         "twig/cssinliner-extra": "3.3",
+43a60,61
+>         "twig/inky-extra": "3.3",
+>         "twig/intl-extra": "^3.3",
+46a65,69
+>         "dama/doctrine-test-bundle": "^6.6",
+>         "dbrekelmans/bdi": "^0.3.0",
+>         "friendsofphp/php-cs-fixer": "^3.0",
+>         "hautelook/alice-bundle": "^2.9",
+>         "phpstan/phpstan": "^0.12.90",
+48,50c71,73
+<         "symfony/browser-kit": "5.2.*",
+<         "symfony/css-selector": "5.2.*",
+<         "symfony/debug-bundle": "5.2.*",
+---
+>         "symfony/browser-kit": "^5.2",
+>         "symfony/css-selector": "^5.2",
+>         "symfony/debug-bundle": "^5.2",
+52,54c75,79
+<         "symfony/phpunit-bridge": "^5.3",
+<         "symfony/stopwatch": "5.2.*",
+<         "symfony/web-profiler-bundle": "5.2.*"
+---
+>         "symfony/panther": "^1.0",
+>         "symfony/phpunit-bridge": "^5.2",
+>         "symfony/stopwatch": "^5.2",
+>         "symfony/var-dumper": "^5.2",
+>         "symfony/web-profiler-bundle": "^5.2"

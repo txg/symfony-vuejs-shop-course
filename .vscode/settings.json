@@ -1,0 +1,29 @@
+{
+    "php.suggest.basic": false,
+    "editor.quickSuggestions": { "comments": true },
+    "intelephense.files.exclude": [
+        "**/.git/**",
+        "**/.svn/**",
+        "**/.hg/**",
+        "**/CVS/**",
+        "**/.DS_Store/**",
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/vendor/**/{Test,test,Tests,tests}/**/*Test.php"
+      ],
+    "emmet.includeLanguages": {
+        "twig": "html"
+    },
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "rankedchoice",
+            "database": "ranked_choice",
+            "username": "rc_super_admin",
+            "password": "rc1234"
+        }
+    ],
+}
